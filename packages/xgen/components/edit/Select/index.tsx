@@ -53,9 +53,9 @@ const Index = (props: IProps) => {
 	const { __bind, __name, itemProps, extend, ...rest_props } = props
 	const [x] = useState(() => container.resolve(Model))
 
+	// 监测属性变化，重新从后端拉取下拉选项
 	useLayoutEffect(() => {
 		x.remote.raw_props = props
-
 		x.remote.init()
 	}, [props])
 

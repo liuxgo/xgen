@@ -3,7 +3,9 @@ import clsx from 'clsx'
 import { toJS } from 'mobx'
 import { useLayoutEffect, useState } from 'react'
 import { When } from 'react-if'
+import { useMemo } from 'react'
 
+import { getTemplateValue } from '@/utils'
 import { X } from '@/components'
 import { useMounted } from '@/hooks'
 import { Icon } from '@/widgets'
@@ -31,6 +33,24 @@ const Index = (props: IPropsFilter) => {
 	const form_name = `form_filter_${model}`
 	const { base, more, visible_btn_more } = useCalcLayout(columns, { mounted, form_name })
 
+	// base或者query变化重新结算sections
+	const sections = useMemo(() => {
+		if (query !== null && query !== undefined) {
+			let data: Record<string, any> = {}
+			for (let [key, value] of Object.entries(query)) {
+				// 判断key是否以where开头
+				// "bind": "where.dept_id.eq"，解析中间的'dept_id'的值
+				if (key.startsWith('where')) {
+					data[key.split('.')[1]] = value
+				}
+			}
+			// 解析属性模板变量{{}}
+			return getTemplateValue(base, data)
+		} else {
+			return base
+		}
+	}, [base, query])
+
 	useLayoutEffect(() => {
 		resetFields()
 
@@ -41,8 +61,8 @@ const Index = (props: IPropsFilter) => {
 		if (!Object.keys(search_params).length) return
 
 		setFieldsValue(search_params)
-      }, [ parent, params ])
-      
+	}, [parent, params])
+
 	if (!columns.length && !actions?.length) return null
 
 	const onReset = () => {
@@ -67,7 +87,7 @@ const Index = (props: IPropsFilter) => {
 			onValuesChange={(_, values) => setQuery(values)}
 		>
 			<Row gutter={16} style={{ marginBottom: 16 }}>
-				{base.map((item: any, index: number) => (
+				{sections.map((item: any, index: number) => (
 					<Col span={item.width} key={index}>
 						<X
 							type='edit'
