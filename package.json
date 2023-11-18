@@ -24,6 +24,7 @@
       "devDependencies": {
             "lint-staged": "^13.1.0",
             "prettier": "^2.8.1",
+            "swc-plugin-auto-css-modules": "^1.5.0",
             "turbo": "^1.7.2",
             "yorkie": "^2.0.0"
       }
