@@ -17,6 +17,7 @@ const Index = ({ x, type }: IPropsCommon) => {
 	const is_dark = x.global.theme == 'dark'
 
 	const props_form: IPropsForm = {
+		isCaptcha: x.isCaptcha,
 		code: x.captcha.content,
 		loading: x.loading.login,
 		getCaptcha: x.getCaptcha,
@@ -33,7 +34,7 @@ const Index = ({ x, type }: IPropsCommon) => {
 					<Link
 						className={clsx([
 							'user_login_wrap action_wrap flex justify_center align_center cursor_point',
-							!x.global.app_info.login?.user && 'disabled'
+							!x.global.app_info.login?.entry.user && 'disabled'
 						])}
 						to={`/login/${type === 'admin' ? 'user' : 'admin'}`}
 					>

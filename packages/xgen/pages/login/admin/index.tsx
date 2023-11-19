@@ -10,11 +10,15 @@ const Index = () => {
 	const [x] = useState(() => container.resolve(Model))
 
 	useAsyncEffect(async () => {
-            await window.$app.Event.emit('app/getAppInfo')
-            
+		await window.$app.Event.emit('app/getAppInfo')
 		x.user_type = 'admin'
+		x.isCaptcha =
+			x.global.app_info?.login?.admin?.captcha != '' &&
+			x.global.app_info?.login?.admin?.captcha != undefined
 
-		x.getCaptcha()
+		if (x.isCaptcha) {
+			x.getCaptcha()
+		}
 	}, [])
 
 	return <Common type='admin' x={x}></Common>

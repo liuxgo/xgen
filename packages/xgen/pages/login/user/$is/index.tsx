@@ -18,8 +18,12 @@ const Index = () => {
 
 		x.user_type = 'user'
 		x.is = is
+		x.isCaptcha =
+			x.global.app_info?.login?.user?.captcha != '' && x.global.app_info?.login?.user?.captcha != undefined
 
-		x.getCaptcha()
+		if (x.isCaptcha) {
+			x.getCaptcha()
+		}
 	}, [])
 
 	return <Common type='user' x={x}></Common>

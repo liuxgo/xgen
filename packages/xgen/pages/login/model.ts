@@ -19,6 +19,7 @@ export default class Model {
 	captcha = {} as Captcha
 	loading = {} as Global.BooleanObject
 	is?: string
+	isCaptcha = false //是否显示验证码
 
 	constructor(public global: GlobalModel, private service: Service) {
 		makeAutoObservable(this, {}, { autoBind: true })
@@ -48,8 +49,9 @@ export default class Model {
 	async afterLogin(res: ResLogin, err: Utils.ResError) {
 		if (err || !res?.token) {
 			this.loading.login = false
-			this.getCaptcha()
-
+			if (this.isCaptcha) {
+				this.getCaptcha()
+			}
 			return
 		}
 

@@ -8,9 +8,10 @@ import { getLocale } from '@umijs/max'
 const { Item, useForm } = Form
 
 import type { IPropsForm } from '@/pages/login/types'
+import { When } from 'react-if'
 
 const Index = (props: IPropsForm) => {
-	const { code, loading, getCaptcha, onFinish } = props
+	const { isCaptcha, code, loading, getCaptcha, onFinish } = props
 	const [form] = useForm()
 	const { getFieldValue } = form
 	const messages = useIntl()
@@ -57,31 +58,34 @@ const Index = (props: IPropsForm) => {
 					)}
 				</Item>
 			</div>
-			<div className='input_wrap relative'>
-				<Item noStyle shouldUpdate>
-					{() => (
-						<Item noStyle name='code'>
-							<Input
-								className={clsx([
-									'input input_captcha_code',
-									getFieldValue('code') ? 'has_value' : '',
-									!is_cn && 'en'
-								])}
-								type='text'
-								maxLength={6}
-								prefix={<Icon name='security-outline' size={20}></Icon>}
-							></Input>
-						</Item>
-					)}
-				</Item>
-				<span
-					className='img_captcha_code absolute cursor_point border_box'
-					style={{
-						backgroundImage: code ? `url(${code})` : undefined
-					}}
-					onClick={getCaptcha}
-				/>
-			</div>
+			<When condition={isCaptcha}>
+				<div className='input_wrap relative'>
+					<Item noStyle shouldUpdate>
+						{() => (
+							<Item noStyle name='code'>
+								<Input
+									className={clsx([
+										'input input_captcha_code',
+										getFieldValue('code') ? 'has_value' : '',
+										!is_cn && 'en'
+									])}
+									type='text'
+									maxLength={6}
+									prefix={<Icon name='security-outline' size={20}></Icon>}
+								></Input>
+							</Item>
+						)}
+					</Item>
+					<span
+						className='img_captcha_code absolute cursor_point border_box'
+						style={{
+							backgroundImage: code ? `url(${code})` : undefined
+						}}
+						onClick={getCaptcha}
+					/>
+				</div>
+			</When>
+
 			<Item noStyle shouldUpdate>
 				{() => (
 					<Button
@@ -90,7 +94,12 @@ const Index = (props: IPropsForm) => {
 							!(
 								getFieldValue('mobile') &&
 								getFieldValue('password') &&
-								getFieldValue('code')
+								(() => {
+									if (isCaptcha) {
+										return getFieldValue('code')
+									}
+									return true
+								})
 							) && 'disabled'
 						])}
 						type='primary'

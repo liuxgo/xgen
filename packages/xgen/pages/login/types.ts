@@ -45,6 +45,7 @@ export interface IPropsCommon {
 }
 
 export interface IPropsForm {
+	isCaptcha: boolean
 	code: Captcha['content']
 	loading: boolean
 	getCaptcha: () => void
