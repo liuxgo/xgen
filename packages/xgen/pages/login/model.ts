@@ -91,21 +91,17 @@ export default class Model {
 	}
 
 	onFinish(data: FormValues) {
-		const { mobile, password, code } = data
-		const is_email = mobile.indexOf('@') !== -1
+		const { account, password, code } = data
+		const is_email = account.indexOf('@') !== -1
 
 		if (is_email) {
-			if (!reg_email.test(mobile)) {
+			if (!reg_email.test(account)) {
 				return message.warning(this.global.locale_messages.login.form.validate.email)
-			}
-		} else {
-			if (!reg_mobile.test(mobile)) {
-				return message.warning(this.global.locale_messages.login.form.validate.mobile)
 			}
 		}
 
 		this.login({
-			[is_email ? 'email' : 'mobile']: mobile,
+			account: account,
 			password: password,
 			captcha: {
 				id: this.captcha.id,

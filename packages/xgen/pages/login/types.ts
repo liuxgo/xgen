@@ -9,14 +9,16 @@ export interface Captcha {
 }
 
 export interface FormValues {
-	mobile: string
+	account: string
 	password: string
 	code: string
 }
 
 export interface ReqLogin {
-	email?: string
-	mobile?: string
+	// username?: string
+	// email?: string
+	// mobile?: string
+	account: string
 	is?: string
 	sid: string
 	password: string

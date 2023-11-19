@@ -23,11 +23,11 @@ const Index = (props: IPropsForm) => {
 			<div className='input_wrap'>
 				<Item noStyle shouldUpdate>
 					{() => (
-						<Item noStyle name='mobile'>
+						<Item noStyle name='account'>
 							<Input
 								className={clsx([
-									'input input_mobile',
-									getFieldValue('mobile') ? 'has_value' : '',
+									'input input_account',
+									getFieldValue('account') ? 'has_value' : '',
 									!is_cn && 'en'
 								])}
 								type='text'
@@ -92,7 +92,7 @@ const Index = (props: IPropsForm) => {
 						className={clsx([
 							'btn_login',
 							!(
-								getFieldValue('mobile') &&
+								getFieldValue('account') &&
 								getFieldValue('password') &&
 								(() => {
 									if (isCaptcha) {
