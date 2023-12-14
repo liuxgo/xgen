@@ -1,6 +1,6 @@
 import type Model from '@/components/base/Table/model'
 import type { TableColumnType } from 'antd'
-import type { Common } from '@/types'
+import type { Action, Common } from '@/types'
 
 export interface IPropsPureTable {
 	parent: Model['parent']
@@ -50,4 +50,11 @@ export interface Locale {
 			}
 		}
 	}
+}
+
+export interface IPropsAction {
+	namespace?: Model['namespace']['value']
+	primary: Model['setting']['primary']
+	action: Action.Props
+	data_item: any
 }

@@ -10,37 +10,23 @@ import { Icon } from '@/widgets'
 import styles from './index.less'
 
 import type { IPropsActions } from '../../types'
+import Action from './Action'
 
 const Index = (props: IPropsActions) => {
 	const { namespace, primary, actions, data_item } = props
-	const getStyle = useActionStyle()
-	const getDisabled = useActionDisabled()
-	const onAction = useAction()
 
 	const _actions = useMemo(() => getTemplateValue(actions, data_item), [actions, data_item])
 
 	const Content = (
 		<div className={clsx([styles.table_option_items, 'flex flex_column'])}>
 			{_actions.map((it, index) => (
-				<div
-					className={clsx([
-						'table_option_item flex align_center cursor_point',
-						getStyle(it.style),
-						getDisabled(it.disabled)
-					])}
+				<Action
+					namespace={namespace}
+					primary={primary}
+					action={it}
+					data_item={data_item}
 					key={index}
-					onClick={() =>
-						onAction({
-							namespace,
-							primary,
-							data_item,
-							it
-						})
-					}
-				>
-					<Icon name={it.icon} size={13}></Icon>
-					<span className='text'>{it.title}</span>
-				</div>
+				></Action>
 			))}
 		</div>
 	)
