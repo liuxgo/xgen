@@ -4,7 +4,8 @@ import type { Action, Common } from '@/types'
 export declare namespace TableType {
 	interface Filter {
 		columns: Array<Common.WideColumn>
-		actions?: Array<{ action: Array<Action.ActionParams> } & Pick<Action.Props, 'title' | 'icon'>>
+		// actions?: Array<{ action: Array<Action.ActionParams> } & Pick<Action.Props, 'title' | 'icon'>>
+		actions?: Array<Action.Props>
 	}
 
 	interface Header {

@@ -95,8 +95,9 @@ export declare namespace Action {
 		showWhenView?: boolean
 		hideWhenEdit?: boolean
 		disabled?: {
-			bind: string
-			value: string | Array<string>
+			bind?: string
+			value?: string | Array<string>
+			props?: any
 		}
 	}
 }

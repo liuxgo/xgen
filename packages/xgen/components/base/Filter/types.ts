@@ -1,6 +1,6 @@
 import type { Namespace } from '@/models'
 
-import type { TableType, Common } from '@/types'
+import type { TableType, Common, Action } from '@/types'
 import type Model from '@/components/base/Table/model'
 
 export interface IPropsFilter {
@@ -25,4 +25,10 @@ export interface Locale {
 		search: string
 		reset: string
 	}
+}
+
+export interface IPropsAction {
+	namespace?: Namespace['value']
+	action: Action.Props
+	query: any
 }

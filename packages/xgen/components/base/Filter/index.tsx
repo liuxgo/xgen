@@ -33,7 +33,7 @@ const Index = (props: IPropsFilter) => {
 	const form_name = `form_filter_${model}`
 	const { base, more, visible_btn_more } = useCalcLayout(columns, { mounted, form_name })
 
-	// base或者query变化重新结算sections
+	// base或者query变化重新计算sections
 	const sections = useMemo(() => {
 		if (query !== null && query !== undefined) {
 			let data: Record<string, any> = {}

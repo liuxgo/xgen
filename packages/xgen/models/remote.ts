@@ -10,6 +10,7 @@ import type { Component, Global } from '@/types'
 export default class Index {
 	raw_props = {} as Global.AnyObject
 	options = [] as Array<any>
+	value: any = ''
 
 	constructor(private service: Remote) {
 		makeAutoObservable(this, {}, { autoBind: true })
@@ -53,6 +54,29 @@ export default class Index {
 		if (err) return
 
 		this.options = res
+	}
+
+	async getValue() {
+		const remote = this.raw_props.xValue?.remote
+		if (!remote) return
+
+		const params = remote.params!
+		const session_key = `${remote.api}|${new URLSearchParams(params).toString()}`
+
+		if (local.remote_cache) {
+			const session_cache: any = decode(sessionStorage.getItem(session_key))
+
+			if (session_cache) return (this.options = session_cache)
+		}
+
+		const { res, err } = await this.service.getValue<Component.Params, any>(remote.api, params)
+
+		if (err) return
+
+		if (local.remote_cache) sessionStorage.setItem(session_key, encode(res))
+
+		this.value = res
+		return res
 	}
 
 	init() {

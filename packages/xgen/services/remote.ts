@@ -16,4 +16,9 @@ export default class Index {
 	searchOptions<Req, Res>(api: string, params: Req) {
 		return axios.get<Req, Response<Res>>(api, { params })
 	}
+
+	@catchError()
+	getValue<Req, Res>(api: string, params: Req) {
+		return axios.get<Req, Response<Res>>(api, { params })
+	}
 }
