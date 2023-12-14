@@ -99,5 +99,6 @@ export declare namespace Action {
 			value?: string | Array<string>
 			props?: any
 		}
+		hideWhenDisabled?: boolean
 	}
 }

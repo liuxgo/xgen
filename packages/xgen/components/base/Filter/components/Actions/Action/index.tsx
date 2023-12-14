@@ -8,7 +8,7 @@ import { useActionDisabled } from '@/hooks'
 
 import { container } from 'tsyringe'
 import Model from './model'
-import { useLayoutEffect, useState } from 'react'
+import { Fragment, useLayoutEffect, useState } from 'react'
 
 const Index = (props: IPropsAction) => {
 	const { namespace, action, query } = props
@@ -32,25 +32,29 @@ const Index = (props: IPropsAction) => {
 	}, [props, x.value])
 
 	return (
-		<Button
-			className={clsx(
-				['btn_action border_box flex justify_center align_center clickable ml_16'],
-				disabledCls
+		<Fragment>
+			{action.hideWhenDisabled && disabledCls === 'disabled' ? null : (
+				<Button
+					className={clsx(
+						['btn_action border_box flex justify_center align_center clickable ml_16'],
+						disabledCls
+					)}
+					type='primary'
+					icon={<Icon name={action.icon} size={15}></Icon>}
+					onClick={() => {
+						onAction({
+							namespace: namespace ?? '',
+							primary: '',
+							data_item: null,
+							it: action,
+							extra: { query }
+						})
+					}}
+				>
+					{action.title}
+				</Button>
 			)}
-			type='primary'
-			icon={<Icon name={action.icon} size={15}></Icon>}
-			onClick={() => {
-				onAction({
-					namespace: namespace ?? '',
-					primary: '',
-					data_item: null,
-					it: action,
-					extra: { query }
-				})
-			}}
-		>
-			{action.title}
-		</Button>
+		</Fragment>
 	)
 }
 
