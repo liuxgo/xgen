@@ -10,10 +10,10 @@ export default (
 	setData: IPropsPureForm['setData'],
 	setSetting: IPropsPureForm['setSetting']
 ) => {
-      return useMemoizedFn(async (v, isOnLoad?: boolean) => {
-            if (!onChangeHook) return
-            
-            setData(v)
+	return useMemoizedFn(async (v, isOnLoad?: boolean) => {
+		if (!onChangeHook) return
+
+		setData(v)
 
 		const key = Object.keys(v)[0]
 		const value = v[key]

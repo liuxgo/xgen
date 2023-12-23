@@ -25,7 +25,8 @@ export default class Model {
 
 	submit() {
 		if (this.delete_ids.length) {
-			this.onChangeForm!({ data: toJS(this.list), delete: this.delete_ids })
+			this.onChangeForm!(toJS(this.list))
+			// this.onChangeForm!({ data: toJS(this.list), delete: this.delete_ids })
 		} else {
 			this.onChangeForm!(toJS(this.list))
 		}
