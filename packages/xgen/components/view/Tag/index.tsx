@@ -47,7 +47,7 @@ const Index = (props: IProps) => {
 
 	useLayoutEffect(() => {
 		x.remote.raw_props = props
-
+		x.props = props
 		x.remote.init()
 	}, [])
 
