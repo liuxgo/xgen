@@ -17,7 +17,8 @@ export default (value: IProps['value']) => {
 					uid: item,
 					name: item,
 					response: item,
-					thumbUrl: item
+					thumbUrl: item,
+					url: item
 				} as UploadFile<string>
 
 				if (/(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico)$/i.test(item)) {
