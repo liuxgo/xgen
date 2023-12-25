@@ -8,7 +8,7 @@ import { X } from '@/components'
 import type { IPropsFormItem } from '../../types'
 
 const Index = (props: IPropsFormItem) => {
-	const { showLabel, item } = props
+	const { showLabel, item, extra } = props
 	const ref = useRef(null)
 	const focus = useFocusWithin(ref)
 
@@ -28,7 +28,8 @@ const Index = (props: IPropsFormItem) => {
 					__bind: item.bind,
 					__name: item.name,
 					__data_item: null,
-					style: { width: '100%' }
+					style: { width: '100%' },
+					extra
 				}}
 			></X>
 		</Col>

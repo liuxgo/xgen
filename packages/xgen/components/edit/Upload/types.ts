@@ -15,6 +15,7 @@ export interface IProps extends UploadProps, Component.PropsEditComponent, Commo
 
 export interface CustomProps extends UploadProps, CommonProps {
 	api: string | { api: string; params: any }
+	extra: string
 }
 
 export interface FileType {

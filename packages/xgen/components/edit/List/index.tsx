@@ -18,6 +18,7 @@ interface ICustom {
 	disabled?: boolean
 	showLabel?: boolean
 	hasChildren?: boolean
+	extra?: string
 	onChange?: (v: any) => void
 }
 
@@ -25,7 +26,7 @@ interface IProps extends Component.PropsEditComponent, ICustom {}
 
 const List = window.$app.memo(
 	observer((props: ICustom) => {
-		const { name, showLabel, hasChildren } = props
+		const { name, showLabel, hasChildren, extra } = props
 		const [x] = useState(() => container.resolve(Model))
 		const [value, setValue] = useState([])
 
@@ -52,6 +53,7 @@ const List = window.$app.memo(
 				showLabel={showLabel}
 				hasChildren={hasChildren}
 				onChangeForm={onChange}
+				extra={extra}
 			></PureList>
 		)
 	})

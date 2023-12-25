@@ -9,6 +9,8 @@ export interface IProps {
 	list: Array<any>
 	hasChildren?: boolean
 	showLabel?: boolean
+	extra?: string
+	onChange?: (v: Array<any> | { data: Array<any>; delete: Array<string | number> }) => void
 	onChangeForm?: (v: Array<any> | { data: Array<any>; delete: Array<string | number> }) => void
 }
 
@@ -21,6 +23,7 @@ export interface IPropsList {
 	list: IProps['list']
 	showLabel: IProps['showLabel']
 	hasChildren: IProps['hasChildren']
+	extra?: IProps['extra']
 	parentIds?: Array<string | number>
 	onSort: Model['onSort']
 	onAction: Model['onAction']
@@ -31,6 +34,7 @@ export interface IPropsRow {
 	setting: IProps['setting']
 	showLabel: IProps['showLabel']
 	hasChildren: IProps['hasChildren']
+	extra?: IProps['extra']
 	dataItem: any
 	parentIds: ParentIds
 	fold: boolean
@@ -48,8 +52,9 @@ export interface IPropsActions {
 
 export interface IPropsFields {
 	setting: IProps['setting']
-      showLabel: IProps[ 'showLabel' ]
+	showLabel: IProps['showLabel']
 	hasChildren: IProps['hasChildren']
+	extra?: IProps['extra']
 	dataItem: IPropsRow['dataItem']
 	parentIds: ParentIds
 	onChange: Model['onChange']
@@ -58,4 +63,5 @@ export interface IPropsFields {
 export interface IPropsFormItem {
 	showLabel: IProps['showLabel']
 	item: Common.EditColumn
+	extra?: IProps['extra']
 }

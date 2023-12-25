@@ -7,7 +7,7 @@ import Row from '../Row'
 import type { IPropsList } from '../../types'
 
 const Index = (props: IPropsList) => {
-	const { setting, list, showLabel, hasChildren, parentIds = [], onSort, onAction, onChange } = props
+	const { setting, list, showLabel, hasChildren, extra, parentIds = [], onSort, onAction, onChange } = props
 
 	return (
 		<div className='w_100 border_box flex flex_column' style={{ paddingLeft: parentIds?.length && 48 }}>
@@ -23,6 +23,7 @@ const Index = (props: IPropsList) => {
 							fold={item?._fold}
 							onAction={onAction}
 							onChange={onChange}
+							extra={extra}
 						></Row>
 						<When condition={!item?._fold && item.children?.length}>
 							<KeepAlive cacheKey={item.id + [...parentIds, item.id].join('_')}>

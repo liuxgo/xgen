@@ -18,7 +18,7 @@ import type { UploadProps } from 'antd'
 import type { IProps, CustomProps, IPropsUploadBtn } from './types'
 
 const Custom = window.$app.memo((props: CustomProps) => {
-	const { api, filetype, maxCount, desc, imageSize, onChange: trigger } = props
+	const { api, filetype, maxCount, desc, imageSize, onChange: trigger, extra } = props
 	const { list, setList } = useList(props.value)
 	const visible_btn = useVisibleBtn(list.length, maxCount || 1)
 
@@ -35,7 +35,12 @@ const Custom = window.$app.memo((props: CustomProps) => {
 	})
 
 	const action = useMemo(() => {
-		if (typeof api === 'string') return api
+		if (typeof api === 'string') {
+			if (extra) {
+				return api.indexOf('?') === -1 ? `${api}?extra=${extra}` : `${api}&extra=${extra}`
+			}
+			return api
+		}
 
 		return `${api.api}?${new URLSearchParams(api.params).toString()}`
 	}, [api])

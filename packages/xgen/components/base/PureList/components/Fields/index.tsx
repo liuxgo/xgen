@@ -8,7 +8,7 @@ import type { IPropsFields } from '../../types'
 const { useForm } = Form
 
 const Index = (props: IPropsFields) => {
-	const { setting, showLabel, hasChildren, dataItem, parentIds, onChange } = props
+	const { setting, showLabel, hasChildren, extra, dataItem, parentIds, onChange } = props
 	const [form] = useForm()
 
 	return (
@@ -21,7 +21,12 @@ const Index = (props: IPropsFields) => {
 			>
 				<Row gutter={12}>
 					{setting.map((item) => (
-						<FormItem showLabel={showLabel} item={item} key={item.name}></FormItem>
+						<FormItem
+							showLabel={showLabel}
+							extra={extra}
+							item={item}
+							key={item.name}
+						></FormItem>
 					))}
 				</Row>
 			</Form>
