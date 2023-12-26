@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useMemoizedFn } from 'ahooks'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
@@ -15,7 +16,7 @@ import Model from './model'
 import type { IProps, IPropsList, IPropsEmpty } from './types'
 
 const Index = (props: IProps) => {
-	const { setting, list, showLabel, hasChildren, onChangeForm, extra } = props
+	const { setting, list, showLabel, hasChildren, onChangeForm, extra, disabled } = props
 	const [x] = useState(() => container.resolve(Model))
 
 	useLayoutEffect(() => x.init(list, setting, onChangeForm), [list])
@@ -41,7 +42,7 @@ const Index = (props: IProps) => {
 	}
 
 	return (
-		<root.div>
+		<root.div className={clsx([disabled && 'disabled'])}>
 			<ShadowTheme></ShadowTheme>
 			<Styles showLabel={showLabel}></Styles>
 			<If condition={x.list.length}>

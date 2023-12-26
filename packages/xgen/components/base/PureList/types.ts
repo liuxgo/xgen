@@ -10,6 +10,7 @@ export interface IProps {
 	hasChildren?: boolean
 	showLabel?: boolean
 	extra?: string
+	disabled?: boolean
 	onChange?: (v: Array<any> | { data: Array<any>; delete: Array<string | number> }) => void
 	onChangeForm?: (v: Array<any> | { data: Array<any>; delete: Array<string | number> }) => void
 }

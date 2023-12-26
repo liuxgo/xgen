@@ -54,6 +54,7 @@ const List = window.$app.memo(
 				hasChildren={hasChildren}
 				onChangeForm={onChange}
 				extra={extra}
+				disabled={props.disabled}
 			></PureList>
 		)
 	})
