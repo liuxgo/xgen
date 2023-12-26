@@ -15,7 +15,7 @@ export default (value: IProps['value']) => {
 			(total: Array<UploadFile<string>>, item: any) => {
 				const real_item = {
 					uid: item,
-					name: item,
+					name: item.match(/[^/]+$/) ? item.match(/[^/]+$/)[0] : item,
 					response: item,
 					thumbUrl: item,
 					url: item
