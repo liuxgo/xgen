@@ -26140,6 +26140,7 @@ div.xgen-typography-edit-content.xgen-typography-rtl {
   line-height: 1.5715;
   white-space: nowrap;
   text-overflow: ellipsis;
+  pointer-events: all;
 }
 .xgen-upload-list-item-card-actions {
   position: absolute;
