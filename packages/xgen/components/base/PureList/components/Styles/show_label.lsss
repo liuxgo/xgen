@@ -42,4 +42,8 @@
 		outline: none !important;
 		box-shadow: none !important;
 	}
+
+	.actions_wrap {
+		margin-top: 16px;
+	}
 }
