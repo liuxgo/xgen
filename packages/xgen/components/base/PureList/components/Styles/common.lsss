@@ -2,9 +2,13 @@
 	.xgen-form-item {
 		width: 100%;
 		margin-bottom: 12px;
+
+		.xgen-upload-list-item-name {
+			pointer-events: all;
+		}
 	}
 
-      .sortable-ghost {
-            opacity: 0;
-      }
+  .sortable-ghost {
+    opacity: 0;
+  }
 }
