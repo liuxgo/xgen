@@ -1,5 +1,5 @@
-import Admin from './login/admin'
+import User from './login/user'
 
 export default () => {
-	return <Admin></Admin>
+	return <User></User>
 }

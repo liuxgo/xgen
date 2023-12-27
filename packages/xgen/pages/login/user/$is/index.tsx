@@ -14,7 +14,7 @@ const Index = () => {
 	useAsyncEffect(async () => {
 		await window.$app.Event.emit('app/getAppInfo')
 
-		if (!x.global.app_info.login?.user) return history.push('/login/admin')
+		// if (!x.global.app_info.login?.user) return history.push('/login/user')
 
 		x.user_type = 'user'
 		x.is = is
